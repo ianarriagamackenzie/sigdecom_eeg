@@ -1,13 +1,12 @@
-# Method PSD
-# Ian Arriaga MacKenzie
+### Method PSD
 
+# Libraries
 library(tidyverse)
 library(reshape2)
 library(eegkit)
 library(psd)
 library(RColorBrewer)
 library(edf)
-
 
 # Simulate data, similar to sampled EEG sleep data
 
@@ -75,7 +74,6 @@ ggplot(combframe, aes(time, value)) +
   facet_grid(variable ~ .) +
   theme_bw()
 
-
 # Power Spectral Density - shows signals present in combined data
 # decibals
 # PSD of combined signal
@@ -88,8 +86,6 @@ eegpsd(signalframe$combsig_FIR, Fs = n, upper = 50, t = "b")
 eegpsd(signalframe$combsig_err, Fs = n, upper = 50, unit = "mV^2", t = "b")
 # PSD of band-pass signal
 eegpsd(signalframe$combsig_FIR, Fs = n, upper = 50, unit = "mV^2", t = "b")
-
-
 
 # Use of multitaper power spectral density estimation
 
@@ -112,7 +108,6 @@ ggplot(psdframe_trim, aes(freq, spec)) +
   labs(x = "Frequency", y = "Power") +
   theme_bw()
 
-
 # PSD of band-pass signal
 PSDest_fir = pspectrum(signalframe$combsig_FIR, 200)
 # Extract values for plotting
@@ -129,11 +124,6 @@ ggplot(psdframe_trim_fir, aes(freq, spec)) +
   labs(x = "Frequency", y = "Power") +
   theme_bw()
 
-
-
-
-
-
 # EEG sampling rate
 samprate = 200
 
@@ -144,7 +134,6 @@ eegmerge = read.edf(paste('~/NJT0884.edf.edf',
 # early time
 tstart = eegmerge[[1]]$timestamp.start
 earlystart = c('2017-03-13 23:35:00 MDT')
-
 
 # starting sample point
 tearst = abs(as.numeric(difftime(tstart, earlystart, units = 'secs'))) * 200
@@ -185,5 +174,3 @@ ggplot(tf_psd, aes(PSD_FIR.freq, PSD_FIR.spec)) +
   xlim(0, 40) +
   labs(x = "Frequency", y = "Spectrum") +
   theme_bw()
-
-
