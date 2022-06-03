@@ -1,4 +1,4 @@
-# Method Paper - PSD
+# Method PSD
 # Ian Arriaga MacKenzie
 
 library(tidyverse)
