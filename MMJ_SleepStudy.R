@@ -1,5 +1,4 @@
-## MMJ Sleep Study Analysis R file
-## Ian Arriaga Mackenzie
+## MMJ Sleep Study
 
 # load libraries
 library(edf)
@@ -15,7 +14,6 @@ library(e1071)
 library(ggplot2)
 library(factoextra)
 library(cluster)
-
 
 # load overall master excel sheet with participant info
 anondatacsv <- read.csv("~/MJsleepstudy/anondatacsv.csv")
@@ -34,7 +32,6 @@ yesthc$perTHCSleepMODG = as.numeric(yesthc$perTHCSleepMODG)
 yesthcfil = yesthc %>% 
   dplyr::filter(perTHCSleepMODG < 0.7 & perTHCSleepMODG > 0.2) %>% 
   dplyr::sample_n(23)
-
 
 # EEG sampling rate
 samprate = 200
